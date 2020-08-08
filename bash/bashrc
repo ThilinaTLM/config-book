@@ -1,0 +1,53 @@
+# pureline for powerline
+# repo : https://github.com/chris-marsh/pureline.git
+source ~/.scripts/pureline/pureline ~/.scripts/pureline/configs/powerline_full_256col.conf
+
+# yarn global bin
+export PATH="/home/tlm/.yarn/bin":$PATH
+
+# Bash Bookmark library
+source ~/.local/bin/bashmarks.sh
+
+# -------------------------------------------------------------------------------------------------------------
+#						ALIASES - START
+# -------------------------------------------------------------------------------------------------------------
+
+# sudo
+alias sudo="sudo "
+
+# modern versions of cat and ls
+alias ls="exa"
+alias cat="bat"
+
+# Java 8
+alias java8="/usr/lib/jvm/java-8-openjdk/jre/bin/java"
+
+# Copy files with progress bar
+alias copy="rsync -ah --progress"
+
+# Connect remote machine with SSH
+PRIVATE_KEY="/home/tlm/.ssh/linuxkey.pem"
+HOST="tlm.eastus.cloudapp.azure.com"
+USERNAME="tlm"
+alias connect_remote="ssh -i ${PRIVATE_KEY} ${USERNAME}@${HOST}"
+alias scp="scp -i ${PRIVATE_KEY} "
+
+# custom
+alias cls="clear"
+alias cd..="cd .."
+
+# -------------------------------------------------------------------------------------------------------------
+#						ALIASES - END
+# -------------------------------------------------------------------------------------------------------------
+
+# ADB Connect
+function adb_connect() {
+	IPADDRESS="192.168.43.1"
+	if [ -z "$1" ]
+	then
+		echo "Connecting to ${IPADDRESS}"
+		adb connect "${IPADDRESS}"
+	else
+		adb connect "${1}"
+	fi
+}
